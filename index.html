@@ -73,6 +73,8 @@
 
     <!-- Javscript -->
     <script>
+      console.log("oi");
+
       if ("serviceWorker" in navigator) {
         window.addEventListener("load", () => {
           navigator.serviceWorker &&
@@ -81,6 +83,12 @@
       }
 
       window.addEventListener("load", () => {
+        if ("BeforeInstallPromptEvent" in window) {
+          document.querySelector("#aviso-instalacao").innerHTML = "BeforeInstallPromptEvent supported but not fired yet";
+        } else {
+          document.querySelector("#aviso-instalacao").innerHTML = "BeforeInstallPromptEvent NOT supported"
+        }
+
         let installPrompt = null;
         const installButton = document.querySelector("#install");
 
@@ -118,6 +126,7 @@
       </div>
     </header>
 
+    <h1 id="aviso-instalacao">Nao sabe ainda</h1>
     <button class="disabled" id="install">Install</button>
 
     <section>
